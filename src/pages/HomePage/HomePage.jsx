@@ -1,5 +1,4 @@
 import { Container } from 'react-bootstrap'
-import '../HomePage/HomePage.css'
 import SingleCode from '../../components/SingleCode'
 import { DataArr } from '../../../database/DataArray'
 import { useState } from 'react'
