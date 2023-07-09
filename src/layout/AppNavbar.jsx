@@ -9,7 +9,7 @@ const AppNavbar = () => {
             <nav>
                 <Navbar bg="dark" data-bs-theme="dark" expand="lg" className="bg-body-tertiary">
                     <Container >
-                        <Navbar.Brand href="#">HC <span style={{color:"red"}}>0</span> DE</Navbar.Brand>
+                        <Navbar.Brand>HC <span style={{color:"red"}}>0</span> DE</Navbar.Brand>
                         <Navbar.Toggle aria-controls="navbarScroll" />
                         <Navbar.Collapse id="navbarScroll">
                             <Nav
