@@ -1,0 +1,17 @@
+nav{
+    background: rgb(16, 16, 16)!important;
+}
+.navbar-brand{
+    font-size: 1.5rem!important;
+    font-weight: bold;
+}
+.navbar-expand-lg .navbar-nav .nav-link{
+    font-size: 1.5rem!important;
+    margin-left: 2em;
+}
+nav .active{
+    font-weight: bold;
+}
+.navLink{
+    color:rgb(80, 80, 80)!important;
+}
