@@ -32,16 +32,18 @@ const SingleCode = ({ data }) => {
     <React.Fragment>
       <div className='codeSing'>
         <h5><span style={{ color: "white" }}>Parent Title :</span> {parentTitle}</h5>
-        <h3><span style={{ color: "white" }}>Main Title :</span> {mainTitle} : </h3>
+        <h3><span style={{ color: "white" }}>Main Title :</span> {mainTitle} </h3>
         <div onClick={handleopenCommand} className="copycode">
           <p>$ {openCommand}</p>
         </div>
+        <p>import lines :</p>
         <div onClick={handleClickCode} className='importF'>
         {status ? <FaCheck className='temp' style={{ color: "green" }} /> : <FaRegCopy className='temp' style={{ color: "aqua" }} />}
           <SyntaxHighlighter language='jsx' customStyle={{ padding: "1em", borderRadius: ".4em" }} style={okaidia}>
             {importItem}
           </SyntaxHighlighter>
         </div>
+        <p>main code :</p>
         <div className='maincodex' onClick={handlemainCode}>
           {codeset ? <FaCheck className='tempmain' style={{ color: "green" }} /> : <FaRegCopy className='tempmain' style={{ color: "aqua" }} />}
           <SyntaxHighlighter language='jsx' customStyle={{ padding: "1em", borderRadius: ".4em" }} style={okaidia}>
