@@ -17,7 +17,7 @@ const AppNavbar = () => {
                                 style={{ maxHeight: '100px' }}
                                 navbarScroll
                             >
-                                <Nav.Link className='navLink' as={NavLink} to='/'>The Quick Brown Fox Jumps Over The Lazy Dog !</Nav.Link>
+                                <Nav.Link className='navLink' as={NavLink} to='/'><small>Developed By Piyas Mahamude Alif !</small></Nav.Link>
                             </Nav>
                         </Navbar.Collapse>
                     </Container>

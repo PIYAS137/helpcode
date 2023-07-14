@@ -97,17 +97,25 @@
 }
 
 .searchboxWrapper>input {
-    background: #373737;
+    background: #272822;
     width: 100%;
     border: none;
     padding: .2em 1em;
     font-size: 1.3rem;
-    border-radius: .4em;
+    border-radius: .3em;
     color: lightgray;
+}
+.searchboxWrapper>input::placeholder{
+    text-align: center;
+    color:rgba(0, 128, 0, 0.463);
+    font-size: 1.5rem;
 }
 
 .searchboxWrapper>input:focus {
     outline: none;
+}
+body::-webkit-scrollbar{
+    display: none;
 }
 
 /* -----------search box---------- */

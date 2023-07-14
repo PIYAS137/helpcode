@@ -13,5 +13,9 @@ nav .active{
     font-weight: bold;
 }
 .navLink{
-    color:rgb(80, 80, 80)!important;
+    color:rgba(19, 171, 191, 0.181)!important;
+    font-family: 'Courier New', Courier, monospace;
+}
+.navbar-collapse{
+    flex-grow: 0!important;
 }

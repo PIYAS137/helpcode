@@ -13,7 +13,7 @@ const HomePage = () => {
 
   return (
     <Container>
-      <div className='searchboxWrapper'><input placeholder='Enter main title here ' type="search"  className='searchbox' onChange={handleChange}/></div>
+      <div className='searchboxWrapper'><input placeholder='! - - - - Search required code with key wordS - - - ! ' type="search"  className='searchbox' onChange={handleChange}/></div>
       {DataArr.filter((one)=>{
         return val.toLowerCase() == '' ? one:one.mainTitle.toLowerCase().includes(val)
       }).map((one)=><SingleCode key={one.id} data={one}/>)}
