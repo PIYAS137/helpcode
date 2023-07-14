@@ -1,3 +1,6 @@
+*{
+    scroll-behavior: smooth;
+}
 .homepage {
     padding: 2em;
     background: rgb(26, 26, 26);
@@ -117,5 +120,18 @@
 body::-webkit-scrollbar{
     display: none;
 }
-
+.plane{
+    position: fixed;
+    top:90vh;
+    right:2em;
+    font-size: 2.5rem;
+    transform: rotate(-90deg);
+    animation: anim 2s infinite;
+    color:aliceblue;
+}
+@keyframes anim {
+    0%{top:90%}
+    100%{top:85%}
+    
+}
 /* -----------search box---------- */

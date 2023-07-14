@@ -36,7 +36,7 @@ const SingleCode = ({ data }) => {
         <div onClick={handleopenCommand} className="copycode">
           <p>$ {openCommand}</p>
         </div>
-        <p>import lines :</p>
+        <p>import files :</p>
         <div onClick={handleClickCode} className='importF'>
         {status ? <FaCheck className='temp' style={{ color: "green" }} /> : <FaRegCopy className='temp' style={{ color: "aqua" }} />}
           <SyntaxHighlighter language='jsx' customStyle={{ padding: "1em", borderRadius: ".4em" }} style={okaidia}>
