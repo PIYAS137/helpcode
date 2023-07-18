@@ -570,5 +570,183 @@ export const FirebaseProvider = (props) => {
   
   `,
   "openCommand": " C Programming Language"
-}
+},
+{
+  id: 9,
+  parentTitle: "Javascript onClick get time",
+  mainTitle: "Time React am pm 1:43 am formet",
+  importItem:"const formetedTime=`${hour}:${minute < 10 ? '0'+minute:minute} ${ampm}`;",
+  mainCode: `    const [currentTime,setCurrentTime]=useState('');
+  useEffect(()=>{
+      const updateTime=()=>{
+          const date=new Date();
+          const hour=date.getHours()>12?date.getHours()-12:date.getHours();
+          const minute=date.getMinutes();
+          const ampm=date.getHours()>=12?'pm':'am';
+                // addddddddddd import item line here 
+          setCurrentTime(formetedTime)
+      }
+      updateTime();
+      const timer=setInterval(updateTime,1000);
+      return()=>clearInterval(timer)
+  },[])`,
+  "openCommand": "null"
+},
+{
+    id: 10,
+    parentTitle: "Firebase",
+    mainTitle: "Firebase Real Time Database List Formet",
+    importItem:`
+    import { initializeApp } from "firebase/app";
+    import { getDatabase, onChildAdded, push, ref, set } from 'firebase/database'
+    import {GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut} from 'firebase/auth'`,
+    mainCode: `
+    import { createContext, useContext, useState, useEffect } from "react";
+    import { initializeApp } from "firebase/app";
+    import { getDatabase, onChildAdded, push, ref, set } from 'firebase/database'
+    import {GoogleAuthProvider, getAuth, onAuthStateChanged, signInWithPopup, signOut} from 'firebase/auth'
+    
+    
+    const firebaseConfig = {
+        apiKey: "AIzaSyANPONZTg6Id_IFhpAcJ9XQ4lYXIlOHhvM",
+        authDomain: "chatapp137.firebaseapp.com",
+        projectId: "chatapp137",
+        storageBucket: "chatapp137.appspot.com",
+        messagingSenderId: "414531631605",
+        appId: "1:414531631605:web:854076980290345a47c8bc"
+    };
+    
+    
+    
+    const FirebaseContext = createContext(null)
+    export const useFirebase = () => useContext(FirebaseContext)
+    const FirebaseApp = initializeApp(firebaseConfig)
+    const FirebaseAuth = getAuth(FirebaseApp)
+    const FirebaseDatabase = getDatabase()
+    const FirebaseGoogleAuth=new GoogleAuthProvider()
+    
+    const DatabaseListRef = ref(FirebaseDatabase, 'datas')
+    
+    
+    export const FirebaseProvider = (props) => {
+        const [datas, setDatas] = useState([])
+        const [user,setUser]=useState()
+    
+        const PushData = (name, message,photoURL,time) => {
+            const NewChatPushInList = push(DatabaseListRef);
+            set(NewChatPushInList, {
+                name, message,photoURL,time
+            })
+        }
+    
+        useEffect(()=>{
+            onChildAdded(DatabaseListRef,(data)=>{
+                setDatas(datas=>[...datas,data.val()])
+            })
+        },[])
+    
+        const DeleteChild = (index) => {
+            const updatedDatas = [...datas];
+            updatedDatas.splice(index, 1);
+            setDatas(updatedDatas);
+          };
+        const LogInWithGoogle=async()=>{
+            try{
+                return await signInWithPopup(FirebaseAuth,FirebaseGoogleAuth)
+            }catch(err){
+                console.log(err)
+            }
+        }
+        useEffect(()=>{
+            const Status=()=>onAuthStateChanged(FirebaseAuth,(currrentUser)=>{
+                setUser(currrentUser)
+            })
+            return Status()
+        },[])
+        function SignOut(){
+           return signOut(FirebaseAuth)
+        }
+    
+    
+        return (
+            <FirebaseContext.Provider value={{DeleteChild, PushData,datas,LogInWithGoogle,user,SignOut }}>
+                {props.children}
+            </FirebaseContext.Provider>
+        )
+    }`,
+    "openCommand": "npm install firebase"
+  }
+  ,
+{
+  id: 11,
+  parentTitle: "Lottie Animation",
+  mainTitle: "Lottie icon",
+  importItem:`
+  import Lottie from 'lottie-react'
+  import AnimationName from './animation.json'`,
+  mainCode: `<div className="animation">
+  <Lottie animationData={AnimationName} />
+</div>`,
+  "openCommand": "npm i lottie-react"
+},
+,
+{
+  id: 12,
+  parentTitle: "Firebase",
+  mainTitle: "Firebase Store",
+  importItem:`
+  import { initializeApp } from 'firebase/app'
+  import { addDoc, collection, getDocs, getFirestore, orderBy, query, serverTimestamp } from 'firebase/firestore'`,
+  mainCode: `
+  import { useState } from "react";
+  import { createContext, useContext } from "react";
+  import { initializeApp } from 'firebase/app'
+  import { addDoc, collection, getDocs, getFirestore, orderBy, query, serverTimestamp } from 'firebase/firestore'
+  
+  const firebaseConfig = {
+      apiKey: "AIzaSyB7AwpjuaRhq_Sedm55z5wkpAzJr6VktlM",
+      authDomain: "pracpro-44e8e.firebaseapp.com",
+      projectId: "pracpro-44e8e",
+      storageBucket: "pracpro-44e8e.appspot.com",
+      messagingSenderId: "502204701570",
+      appId: "1:502204701570:web:6cbb728f55d651ad168d9b",
+      measurementId: "G-XFNBCFKCTR"
+  }
+  
+  
+  export const FirebaseContext = createContext(null);
+  export const useFirebase = () => useContext(FirebaseContext)
+  const FireaseApp = initializeApp(firebaseConfig)
+  const FirebaseStore = getFirestore(FireaseApp)
+  
+  
+  
+  export const FirebaseProvider = (props) => {
+      const [data, setData] = useState([])
+      const PutData = async (id, name) => {
+          try {
+              const res = await addDoc(collection(FirebaseStore, "mess"), {
+                  id, name,timestamp:serverTimestamp()
+              })
+          } catch (err) {
+              console.log(err)
+          }
+      }
+          const GetAllDocuments=async()=>{
+              const tempArr=[]
+              const querySnap=await getDocs(query(collection(FirebaseStore,"mess"),orderBy("timestamp","desc")))
+              querySnap.forEach((doc)=>{
+                  tempArr.push(doc.data())
+              })
+              setData(tempArr)
+          }
+  
+      return (
+          <FirebaseContext.Provider value={{data, PutData,GetAllDocuments }}>
+              {props.children}
+          </FirebaseContext.Provider>
+      )
+  }`,
+  "openCommand": "npm install firebase"
+},
 ]
